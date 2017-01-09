@@ -1,0 +1,1076 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ImoEstudanteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="alojamento">
+          <Key>
+            <PropertyRef Name="idAlojamento" />
+          </Key>
+          <Property Name="idAlojamento" Type="int" Nullable="false" />
+          <Property Name="idTipologia" Type="int" Nullable="false" />
+          <Property Name="idTipoAlojamento" Type="int" Nullable="false" />
+          <Property Name="idMorada" Type="int" Nullable="false" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+          <Property Name="avaliacao" Type="int" />
+          <Property Name="descricao" Type="nchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="aluguer">
+          <Key>
+            <PropertyRef Name="idAluguer" />
+          </Key>
+          <Property Name="idAluguer" Type="int" Nullable="false" />
+          <Property Name="idAlojamento" Type="int" Nullable="false" />
+          <Property Name="idUserAgente" Type="int" Nullable="false" />
+          <Property Name="idUserSenhorio" Type="int" Nullable="false" />
+          <Property Name="idUserInquilino" Type="int" Nullable="false" />
+          <Property Name="dataInicio" Type="date" Nullable="false" />
+          <Property Name="dataFim" Type="date" Nullable="false" />
+          <Property Name="valoRenda" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="areaCurso">
+          <Key>
+            <PropertyRef Name="idArea" />
+          </Key>
+          <Property Name="idArea" Type="int" Nullable="false" />
+          <Property Name="idCurso" Type="int" Nullable="false" />
+          <Property Name="nomeArea" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="comodidade">
+          <Key>
+            <PropertyRef Name="idComodidade" />
+          </Key>
+          <Property Name="idComodidade" Type="int" Nullable="false" />
+          <Property Name="nomeComodidade" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="comodidadesAlojamento">
+          <Key>
+            <PropertyRef Name="idComodidade" />
+          </Key>
+          <Property Name="idComodidade" Type="int" Nullable="false" />
+          <Property Name="idAlojamento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contacto">
+          <Key>
+            <PropertyRef Name="idContacto" />
+          </Key>
+          <Property Name="idContacto" Type="int" Nullable="false" />
+          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="nivel" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="valor" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="curso">
+          <Key>
+            <PropertyRef Name="idCurso" />
+          </Key>
+          <Property Name="idCurso" Type="int" Nullable="false" />
+          <Property Name="idInstituicao" Type="int" Nullable="false" />
+          <Property Name="nomeCurso" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="anoCurso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="int" Nullable="false" />
+          <Property Name="nomeEstado" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="genero">
+          <Key>
+            <PropertyRef Name="idGenero" />
+          </Key>
+          <Property Name="idGenero" Type="int" Nullable="false" />
+          <Property Name="nomeGenero" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="instituicaoEnsino">
+          <Key>
+            <PropertyRef Name="idInstituicao" />
+          </Key>
+          <Property Name="idInstituicao" Type="int" Nullable="false" />
+          <Property Name="idMorada" Type="int" />
+          <Property Name="nomeInstituicao" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="morada">
+          <Key>
+            <PropertyRef Name="idMorada" />
+          </Key>
+          <Property Name="idMorada" Type="int" Nullable="false" />
+          <Property Name="idPais" Type="int" Nullable="false" />
+          <Property Name="cidade" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="rua" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="codigoPostal" Type="int" Nullable="false" />
+          <Property Name="numero" Type="int" />
+          <Property Name="andar" Type="int" />
+          <Property Name="descAndar" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="pais">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="int" Nullable="false" />
+          <Property Name="nomePais" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipoAlojamento">
+          <Key>
+            <PropertyRef Name="idTipoAlojamento" />
+          </Key>
+          <Property Name="idTipoAlojamento" Type="int" Nullable="false" />
+          <Property Name="nomeTipoAlojamento" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipologia">
+          <Key>
+            <PropertyRef Name="idTopologia" />
+          </Key>
+          <Property Name="idTopologia" Type="int" Nullable="false" />
+          <Property Name="nometipologia" Type="nchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipoUser">
+          <Key>
+            <PropertyRef Name="idTipo" />
+          </Key>
+          <Property Name="idTipo" Type="int" Nullable="false" />
+          <Property Name="nomeTipo" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="idTipo" Type="int" Nullable="false" />
+          <Property Name="idGenero" Type="int" Nullable="false" />
+          <Property Name="idMorada" Type="int" Nullable="false" />
+          <Property Name="idPais" Type="int" Nullable="false" />
+          <Property Name="idCurso" Type="int" Nullable="false" />
+          <Property Name="nome" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="dataNascimento" Type="date" />
+          <Property Name="login" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="apiKey" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_aidUsersenhorio">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="aluguer" Type="Self.aluguer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="aluguer">
+              <PropertyRef Name="idUserSenhorio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contacto_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="contacto" Type="Self.contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="contacto">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idAlojamento">
+          <End Role="alojamento" Type="Self.alojamento" Multiplicity="1" />
+          <End Role="aluguer" Type="Self.aluguer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alojamento">
+              <PropertyRef Name="idAlojamento" />
+            </Principal>
+            <Dependent Role="aluguer">
+              <PropertyRef Name="idAlojamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idCurso">
+          <End Role="curso" Type="Self.curso" Multiplicity="1" />
+          <End Role="areaCurso" Type="Self.areaCurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="idCurso" />
+            </Principal>
+            <Dependent Role="areaCurso">
+              <PropertyRef Name="idCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idCursoUser">
+          <End Role="curso" Type="Self.curso" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="idCurso" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="idCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idEstado">
+          <End Role="estado" Type="Self.estado" Multiplicity="1" />
+          <End Role="alojamento" Type="Self.alojamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="alojamento">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idGenero">
+          <End Role="genero" Type="Self.genero" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genero">
+              <PropertyRef Name="idGenero" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="idGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idInstituicao">
+          <End Role="instituicaoEnsino" Type="Self.instituicaoEnsino" Multiplicity="1" />
+          <End Role="curso" Type="Self.curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="instituicaoEnsino">
+              <PropertyRef Name="idInstituicao" />
+            </Principal>
+            <Dependent Role="curso">
+              <PropertyRef Name="idInstituicao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idMorada">
+          <End Role="morada" Type="Self.morada" Multiplicity="1" />
+          <End Role="alojamento" Type="Self.alojamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="morada">
+              <PropertyRef Name="idMorada" />
+            </Principal>
+            <Dependent Role="alojamento">
+              <PropertyRef Name="idMorada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idMordaInst">
+          <End Role="morada" Type="Self.morada" Multiplicity="0..1" />
+          <End Role="instituicaoEnsino" Type="Self.instituicaoEnsino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="morada">
+              <PropertyRef Name="idMorada" />
+            </Principal>
+            <Dependent Role="instituicaoEnsino">
+              <PropertyRef Name="idMorada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPais">
+          <End Role="pais" Type="Self.pais" Multiplicity="1" />
+          <End Role="morada" Type="Self.morada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="morada">
+              <PropertyRef Name="idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idTipoAlojamento">
+          <End Role="tipoAlojamento" Type="Self.tipoAlojamento" Multiplicity="1" />
+          <End Role="alojamento" Type="Self.alojamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoAlojamento">
+              <PropertyRef Name="idTipoAlojamento" />
+            </Principal>
+            <Dependent Role="alojamento">
+              <PropertyRef Name="idTipoAlojamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idUserAgente">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="aluguer" Type="Self.aluguer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="aluguer">
+              <PropertyRef Name="idUserAgente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idUserInquilino">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="aluguer" Type="Self.aluguer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="aluguer">
+              <PropertyRef Name="idUserInquilino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaisUser">
+          <End Role="pais" Type="Self.pais" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="idTipologia">
+          <End Role="tipologia" Type="Self.tipologia" Multiplicity="1" />
+          <End Role="alojamento" Type="Self.alojamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipologia">
+              <PropertyRef Name="idTopologia" />
+            </Principal>
+            <Dependent Role="alojamento">
+              <PropertyRef Name="idTipologia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ImoEstudanteModelStoreContainer">
+          <EntitySet Name="alojamento" EntityType="Self.alojamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aluguer" EntityType="Self.aluguer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="areaCurso" EntityType="Self.areaCurso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comodidade" EntityType="Self.comodidade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comodidadesAlojamento" EntityType="Self.comodidadesAlojamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contacto" EntityType="Self.contacto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="curso" EntityType="Self.curso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="genero" EntityType="Self.genero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="instituicaoEnsino" EntityType="Self.instituicaoEnsino" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="morada" EntityType="Self.morada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pais" EntityType="Self.pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoAlojamento" EntityType="Self.tipoAlojamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipologia" EntityType="Self.tipologia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoUser" EntityType="Self.tipoUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_aidUsersenhorio" Association="Self.FK_aidUsersenhorio">
+            <End Role="user" EntitySet="user" />
+            <End Role="aluguer" EntitySet="aluguer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contacto_user" Association="Self.FK_contacto_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="contacto" EntitySet="contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idAlojamento" Association="Self.FK_idAlojamento">
+            <End Role="alojamento" EntitySet="alojamento" />
+            <End Role="aluguer" EntitySet="aluguer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idCurso" Association="Self.FK_idCurso">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="areaCurso" EntitySet="areaCurso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idCursoUser" Association="Self.FK_idCursoUser">
+            <End Role="curso" EntitySet="curso" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idEstado" Association="Self.FK_idEstado">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="alojamento" EntitySet="alojamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idGenero" Association="Self.FK_idGenero">
+            <End Role="genero" EntitySet="genero" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idInstituicao" Association="Self.FK_idInstituicao">
+            <End Role="instituicaoEnsino" EntitySet="instituicaoEnsino" />
+            <End Role="curso" EntitySet="curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idMorada" Association="Self.FK_idMorada">
+            <End Role="morada" EntitySet="morada" />
+            <End Role="alojamento" EntitySet="alojamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idMordaInst" Association="Self.FK_idMordaInst">
+            <End Role="morada" EntitySet="morada" />
+            <End Role="instituicaoEnsino" EntitySet="instituicaoEnsino" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPais" Association="Self.FK_idPais">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="morada" EntitySet="morada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idTipoAlojamento" Association="Self.FK_idTipoAlojamento">
+            <End Role="tipoAlojamento" EntitySet="tipoAlojamento" />
+            <End Role="alojamento" EntitySet="alojamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idUserAgente" Association="Self.FK_idUserAgente">
+            <End Role="user" EntitySet="user" />
+            <End Role="aluguer" EntitySet="aluguer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idUserInquilino" Association="Self.FK_idUserInquilino">
+            <End Role="user" EntitySet="user" />
+            <End Role="aluguer" EntitySet="aluguer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaisUser" Association="Self.FK_PaisUser">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="idTipologia" Association="Self.idTipologia">
+            <End Role="tipologia" EntitySet="tipologia" />
+            <End Role="alojamento" EntitySet="alojamento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ImoEstudanteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="alojamento">
+          <Key>
+            <PropertyRef Name="idAlojamento" />
+          </Key>
+          <Property Name="idAlojamento" Type="Int32" Nullable="false" />
+          <Property Name="idTipologia" Type="Int32" Nullable="false" />
+          <Property Name="idTipoAlojamento" Type="Int32" Nullable="false" />
+          <Property Name="idMorada" Type="Int32" Nullable="false" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <Property Name="avaliacao" Type="Int32" />
+          <Property Name="descricao" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="aluguers" Relationship="Self.FK_idAlojamento" FromRole="alojamento" ToRole="aluguer" />
+          <NavigationProperty Name="estado" Relationship="Self.FK_idEstado" FromRole="alojamento" ToRole="estado" />
+          <NavigationProperty Name="morada" Relationship="Self.FK_idMorada" FromRole="alojamento" ToRole="morada" />
+          <NavigationProperty Name="tipoAlojamento" Relationship="Self.FK_idTipoAlojamento" FromRole="alojamento" ToRole="tipoAlojamento" />
+          <NavigationProperty Name="tipologia" Relationship="Self.idTipologia" FromRole="alojamento" ToRole="tipologia" />
+        </EntityType>
+        <EntityType Name="aluguer">
+          <Key>
+            <PropertyRef Name="idAluguer" />
+          </Key>
+          <Property Name="idAluguer" Type="Int32" Nullable="false" />
+          <Property Name="idAlojamento" Type="Int32" Nullable="false" />
+          <Property Name="idUserAgente" Type="Int32" Nullable="false" />
+          <Property Name="idUserSenhorio" Type="Int32" Nullable="false" />
+          <Property Name="idUserInquilino" Type="Int32" Nullable="false" />
+          <Property Name="dataInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dataFim" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="valoRenda" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="alojamento" Relationship="Self.FK_idAlojamento" FromRole="aluguer" ToRole="alojamento" />
+          <NavigationProperty Name="user" Relationship="Self.FK_aidUsersenhorio" FromRole="aluguer" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="Self.FK_idUserAgente" FromRole="aluguer" ToRole="user" />
+          <NavigationProperty Name="user2" Relationship="Self.FK_idUserInquilino" FromRole="aluguer" ToRole="user" />
+        </EntityType>
+        <EntityType Name="areaCurso">
+          <Key>
+            <PropertyRef Name="idArea" />
+          </Key>
+          <Property Name="idArea" Type="Int32" Nullable="false" />
+          <Property Name="idCurso" Type="Int32" Nullable="false" />
+          <Property Name="nomeArea" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="curso" Relationship="Self.FK_idCurso" FromRole="areaCurso" ToRole="curso" />
+        </EntityType>
+        <EntityType Name="comodidade">
+          <Key>
+            <PropertyRef Name="idComodidade" />
+          </Key>
+          <Property Name="idComodidade" Type="Int32" Nullable="false" />
+          <Property Name="nomeComodidade" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="comodidadesAlojamento">
+          <Key>
+            <PropertyRef Name="idComodidade" />
+          </Key>
+          <Property Name="idComodidade" Type="Int32" Nullable="false" />
+          <Property Name="idAlojamento" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contacto">
+          <Key>
+            <PropertyRef Name="idContacto" />
+          </Key>
+          <Property Name="idContacto" Type="Int32" Nullable="false" />
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="nivel" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="valor" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.FK_contacto_user" FromRole="contacto" ToRole="user" />
+        </EntityType>
+        <EntityType Name="curso">
+          <Key>
+            <PropertyRef Name="idCurso" />
+          </Key>
+          <Property Name="idCurso" Type="Int32" Nullable="false" />
+          <Property Name="idInstituicao" Type="Int32" Nullable="false" />
+          <Property Name="nomeCurso" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="anoCurso" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="areaCursoes" Relationship="Self.FK_idCurso" FromRole="curso" ToRole="areaCurso" />
+          <NavigationProperty Name="users" Relationship="Self.FK_idCursoUser" FromRole="curso" ToRole="user" />
+          <NavigationProperty Name="instituicaoEnsino" Relationship="Self.FK_idInstituicao" FromRole="curso" ToRole="instituicaoEnsino" />
+        </EntityType>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <Property Name="nomeEstado" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="alojamentoes" Relationship="Self.FK_idEstado" FromRole="estado" ToRole="alojamento" />
+        </EntityType>
+        <EntityType Name="genero">
+          <Key>
+            <PropertyRef Name="idGenero" />
+          </Key>
+          <Property Name="idGenero" Type="Int32" Nullable="false" />
+          <Property Name="nomeGenero" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK_idGenero" FromRole="genero" ToRole="user" />
+        </EntityType>
+        <EntityType Name="instituicaoEnsino">
+          <Key>
+            <PropertyRef Name="idInstituicao" />
+          </Key>
+          <Property Name="idInstituicao" Type="Int32" Nullable="false" />
+          <Property Name="idMorada" Type="Int32" />
+          <Property Name="nomeInstituicao" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="cursoes" Relationship="Self.FK_idInstituicao" FromRole="instituicaoEnsino" ToRole="curso" />
+          <NavigationProperty Name="morada" Relationship="Self.FK_idMordaInst" FromRole="instituicaoEnsino" ToRole="morada" />
+        </EntityType>
+        <EntityType Name="morada">
+          <Key>
+            <PropertyRef Name="idMorada" />
+          </Key>
+          <Property Name="idMorada" Type="Int32" Nullable="false" />
+          <Property Name="idPais" Type="Int32" Nullable="false" />
+          <Property Name="cidade" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="rua" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="codigoPostal" Type="Int32" Nullable="false" />
+          <Property Name="numero" Type="Int32" />
+          <Property Name="andar" Type="Int32" />
+          <Property Name="descAndar" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="alojamentoes" Relationship="Self.FK_idMorada" FromRole="morada" ToRole="alojamento" />
+          <NavigationProperty Name="instituicaoEnsinoes" Relationship="Self.FK_idMordaInst" FromRole="morada" ToRole="instituicaoEnsino" />
+          <NavigationProperty Name="pai" Relationship="Self.FK_idPais" FromRole="morada" ToRole="pais" />
+        </EntityType>
+        <EntityType Name="pai">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="Int32" Nullable="false" />
+          <Property Name="nomePais" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="moradas" Relationship="Self.FK_idPais" FromRole="pais" ToRole="morada" />
+          <NavigationProperty Name="users" Relationship="Self.FK_PaisUser" FromRole="pais" ToRole="user" />
+        </EntityType>
+        <EntityType Name="tipoAlojamento">
+          <Key>
+            <PropertyRef Name="idTipoAlojamento" />
+          </Key>
+          <Property Name="idTipoAlojamento" Type="Int32" Nullable="false" />
+          <Property Name="nomeTipoAlojamento" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="alojamentoes" Relationship="Self.FK_idTipoAlojamento" FromRole="tipoAlojamento" ToRole="alojamento" />
+        </EntityType>
+        <EntityType Name="tipologia">
+          <Key>
+            <PropertyRef Name="idTopologia" />
+          </Key>
+          <Property Name="idTopologia" Type="Int32" Nullable="false" />
+          <Property Name="nometipologia" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="alojamentoes" Relationship="Self.idTipologia" FromRole="tipologia" ToRole="alojamento" />
+        </EntityType>
+        <EntityType Name="tipoUser">
+          <Key>
+            <PropertyRef Name="idTipo" />
+          </Key>
+          <Property Name="idTipo" Type="Int32" Nullable="false" />
+          <Property Name="nomeTipo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="idTipo" Type="Int32" Nullable="false" />
+          <Property Name="idGenero" Type="Int32" Nullable="false" />
+          <Property Name="idMorada" Type="Int32" Nullable="false" />
+          <Property Name="idPais" Type="Int32" Nullable="false" />
+          <Property Name="idCurso" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="dataNascimento" Type="DateTime" Precision="0" />
+          <Property Name="login" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="apiKey" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="aluguers" Relationship="Self.FK_aidUsersenhorio" FromRole="user" ToRole="aluguer" />
+          <NavigationProperty Name="aluguers1" Relationship="Self.FK_idUserAgente" FromRole="user" ToRole="aluguer" />
+          <NavigationProperty Name="aluguers2" Relationship="Self.FK_idUserInquilino" FromRole="user" ToRole="aluguer" />
+          <NavigationProperty Name="contactoes" Relationship="Self.FK_contacto_user" FromRole="user" ToRole="contacto" />
+          <NavigationProperty Name="curso" Relationship="Self.FK_idCursoUser" FromRole="user" ToRole="curso" />
+          <NavigationProperty Name="genero" Relationship="Self.FK_idGenero" FromRole="user" ToRole="genero" />
+          <NavigationProperty Name="pai" Relationship="Self.FK_PaisUser" FromRole="user" ToRole="pais" />
+        </EntityType>
+        <Association Name="FK_idAlojamento">
+          <End Role="alojamento" Type="Self.alojamento" Multiplicity="1" />
+          <End Role="aluguer" Type="Self.aluguer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alojamento">
+              <PropertyRef Name="idAlojamento" />
+            </Principal>
+            <Dependent Role="aluguer">
+              <PropertyRef Name="idAlojamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idEstado">
+          <End Role="estado" Type="Self.estado" Multiplicity="1" />
+          <End Role="alojamento" Type="Self.alojamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="alojamento">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idMorada">
+          <End Role="morada" Type="Self.morada" Multiplicity="1" />
+          <End Role="alojamento" Type="Self.alojamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="morada">
+              <PropertyRef Name="idMorada" />
+            </Principal>
+            <Dependent Role="alojamento">
+              <PropertyRef Name="idMorada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idTipoAlojamento">
+          <End Role="tipoAlojamento" Type="Self.tipoAlojamento" Multiplicity="1" />
+          <End Role="alojamento" Type="Self.alojamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoAlojamento">
+              <PropertyRef Name="idTipoAlojamento" />
+            </Principal>
+            <Dependent Role="alojamento">
+              <PropertyRef Name="idTipoAlojamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="idTipologia">
+          <End Role="tipologia" Type="Self.tipologia" Multiplicity="1" />
+          <End Role="alojamento" Type="Self.alojamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipologia">
+              <PropertyRef Name="idTopologia" />
+            </Principal>
+            <Dependent Role="alojamento">
+              <PropertyRef Name="idTipologia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_aidUsersenhorio">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="aluguer" Type="Self.aluguer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="aluguer">
+              <PropertyRef Name="idUserSenhorio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idUserAgente">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="aluguer" Type="Self.aluguer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="aluguer">
+              <PropertyRef Name="idUserAgente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idUserInquilino">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="aluguer" Type="Self.aluguer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="aluguer">
+              <PropertyRef Name="idUserInquilino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idCurso">
+          <End Role="curso" Type="Self.curso" Multiplicity="1" />
+          <End Role="areaCurso" Type="Self.areaCurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="idCurso" />
+            </Principal>
+            <Dependent Role="areaCurso">
+              <PropertyRef Name="idCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contacto_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="contacto" Type="Self.contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="idUser" />
+            </Principal>
+            <Dependent Role="contacto">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idCursoUser">
+          <End Role="curso" Type="Self.curso" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso">
+              <PropertyRef Name="idCurso" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="idCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idInstituicao">
+          <End Role="instituicaoEnsino" Type="Self.instituicaoEnsino" Multiplicity="1" />
+          <End Role="curso" Type="Self.curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="instituicaoEnsino">
+              <PropertyRef Name="idInstituicao" />
+            </Principal>
+            <Dependent Role="curso">
+              <PropertyRef Name="idInstituicao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idGenero">
+          <End Role="genero" Type="Self.genero" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genero">
+              <PropertyRef Name="idGenero" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="idGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idMordaInst">
+          <End Role="morada" Type="Self.morada" Multiplicity="0..1" />
+          <End Role="instituicaoEnsino" Type="Self.instituicaoEnsino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="morada">
+              <PropertyRef Name="idMorada" />
+            </Principal>
+            <Dependent Role="instituicaoEnsino">
+              <PropertyRef Name="idMorada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPais">
+          <End Role="pais" Type="Self.pai" Multiplicity="1" />
+          <End Role="morada" Type="Self.morada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="morada">
+              <PropertyRef Name="idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaisUser">
+          <End Role="pais" Type="Self.pai" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ImoEstudanteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="alojamentoes" EntityType="Self.alojamento" />
+          <EntitySet Name="aluguers" EntityType="Self.aluguer" />
+          <EntitySet Name="areaCursoes" EntityType="Self.areaCurso" />
+          <EntitySet Name="comodidades" EntityType="Self.comodidade" />
+          <EntitySet Name="comodidadesAlojamentoes" EntityType="Self.comodidadesAlojamento" />
+          <EntitySet Name="contactoes" EntityType="Self.contacto" />
+          <EntitySet Name="cursoes" EntityType="Self.curso" />
+          <EntitySet Name="estadoes" EntityType="Self.estado" />
+          <EntitySet Name="generoes" EntityType="Self.genero" />
+          <EntitySet Name="instituicaoEnsinoes" EntityType="Self.instituicaoEnsino" />
+          <EntitySet Name="moradas" EntityType="Self.morada" />
+          <EntitySet Name="pais" EntityType="Self.pai" />
+          <EntitySet Name="tipoAlojamentoes" EntityType="Self.tipoAlojamento" />
+          <EntitySet Name="tipologias" EntityType="Self.tipologia" />
+          <EntitySet Name="tipoUsers" EntityType="Self.tipoUser" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK_idAlojamento" Association="Self.FK_idAlojamento">
+            <End Role="alojamento" EntitySet="alojamentoes" />
+            <End Role="aluguer" EntitySet="aluguers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idEstado" Association="Self.FK_idEstado">
+            <End Role="estado" EntitySet="estadoes" />
+            <End Role="alojamento" EntitySet="alojamentoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idMorada" Association="Self.FK_idMorada">
+            <End Role="morada" EntitySet="moradas" />
+            <End Role="alojamento" EntitySet="alojamentoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idTipoAlojamento" Association="Self.FK_idTipoAlojamento">
+            <End Role="tipoAlojamento" EntitySet="tipoAlojamentoes" />
+            <End Role="alojamento" EntitySet="alojamentoes" />
+          </AssociationSet>
+          <AssociationSet Name="idTipologia" Association="Self.idTipologia">
+            <End Role="tipologia" EntitySet="tipologias" />
+            <End Role="alojamento" EntitySet="alojamentoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_aidUsersenhorio" Association="Self.FK_aidUsersenhorio">
+            <End Role="user" EntitySet="users" />
+            <End Role="aluguer" EntitySet="aluguers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idUserAgente" Association="Self.FK_idUserAgente">
+            <End Role="user" EntitySet="users" />
+            <End Role="aluguer" EntitySet="aluguers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idUserInquilino" Association="Self.FK_idUserInquilino">
+            <End Role="user" EntitySet="users" />
+            <End Role="aluguer" EntitySet="aluguers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idCurso" Association="Self.FK_idCurso">
+            <End Role="curso" EntitySet="cursoes" />
+            <End Role="areaCurso" EntitySet="areaCursoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contacto_user" Association="Self.FK_contacto_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="contacto" EntitySet="contactoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idCursoUser" Association="Self.FK_idCursoUser">
+            <End Role="curso" EntitySet="cursoes" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idInstituicao" Association="Self.FK_idInstituicao">
+            <End Role="instituicaoEnsino" EntitySet="instituicaoEnsinoes" />
+            <End Role="curso" EntitySet="cursoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idGenero" Association="Self.FK_idGenero">
+            <End Role="genero" EntitySet="generoes" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idMordaInst" Association="Self.FK_idMordaInst">
+            <End Role="morada" EntitySet="moradas" />
+            <End Role="instituicaoEnsino" EntitySet="instituicaoEnsinoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPais" Association="Self.FK_idPais">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="morada" EntitySet="moradas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaisUser" Association="Self.FK_PaisUser">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ImoEstudanteModelStoreContainer" CdmEntityContainer="ImoEstudanteEntities">
+          <EntitySetMapping Name="alojamentoes">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.alojamento">
+              <MappingFragment StoreEntitySet="alojamento">
+                <ScalarProperty Name="idAlojamento" ColumnName="idAlojamento" />
+                <ScalarProperty Name="idTipologia" ColumnName="idTipologia" />
+                <ScalarProperty Name="idTipoAlojamento" ColumnName="idTipoAlojamento" />
+                <ScalarProperty Name="idMorada" ColumnName="idMorada" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="avaliacao" ColumnName="avaliacao" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aluguers">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.aluguer">
+              <MappingFragment StoreEntitySet="aluguer">
+                <ScalarProperty Name="idAluguer" ColumnName="idAluguer" />
+                <ScalarProperty Name="idAlojamento" ColumnName="idAlojamento" />
+                <ScalarProperty Name="idUserAgente" ColumnName="idUserAgente" />
+                <ScalarProperty Name="idUserSenhorio" ColumnName="idUserSenhorio" />
+                <ScalarProperty Name="idUserInquilino" ColumnName="idUserInquilino" />
+                <ScalarProperty Name="dataInicio" ColumnName="dataInicio" />
+                <ScalarProperty Name="dataFim" ColumnName="dataFim" />
+                <ScalarProperty Name="valoRenda" ColumnName="valoRenda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="areaCursoes">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.areaCurso">
+              <MappingFragment StoreEntitySet="areaCurso">
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="idCurso" ColumnName="idCurso" />
+                <ScalarProperty Name="nomeArea" ColumnName="nomeArea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comodidades">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.comodidade">
+              <MappingFragment StoreEntitySet="comodidade">
+                <ScalarProperty Name="idComodidade" ColumnName="idComodidade" />
+                <ScalarProperty Name="nomeComodidade" ColumnName="nomeComodidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comodidadesAlojamentoes">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.comodidadesAlojamento">
+              <MappingFragment StoreEntitySet="comodidadesAlojamento">
+                <ScalarProperty Name="idComodidade" ColumnName="idComodidade" />
+                <ScalarProperty Name="idAlojamento" ColumnName="idAlojamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contactoes">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.contacto">
+              <MappingFragment StoreEntitySet="contacto">
+                <ScalarProperty Name="idContacto" ColumnName="idContacto" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cursoes">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.curso">
+              <MappingFragment StoreEntitySet="curso">
+                <ScalarProperty Name="idCurso" ColumnName="idCurso" />
+                <ScalarProperty Name="idInstituicao" ColumnName="idInstituicao" />
+                <ScalarProperty Name="nomeCurso" ColumnName="nomeCurso" />
+                <ScalarProperty Name="anoCurso" ColumnName="anoCurso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estadoes">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.estado">
+              <MappingFragment StoreEntitySet="estado">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="nomeEstado" ColumnName="nomeEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="generoes">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.genero">
+              <MappingFragment StoreEntitySet="genero">
+                <ScalarProperty Name="idGenero" ColumnName="idGenero" />
+                <ScalarProperty Name="nomeGenero" ColumnName="nomeGenero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="instituicaoEnsinoes">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.instituicaoEnsino">
+              <MappingFragment StoreEntitySet="instituicaoEnsino">
+                <ScalarProperty Name="idInstituicao" ColumnName="idInstituicao" />
+                <ScalarProperty Name="idMorada" ColumnName="idMorada" />
+                <ScalarProperty Name="nomeInstituicao" ColumnName="nomeInstituicao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="moradas">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.morada">
+              <MappingFragment StoreEntitySet="morada">
+                <ScalarProperty Name="idMorada" ColumnName="idMorada" />
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="rua" ColumnName="rua" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="andar" ColumnName="andar" />
+                <ScalarProperty Name="descAndar" ColumnName="descAndar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pais">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.pai">
+              <MappingFragment StoreEntitySet="pais">
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+                <ScalarProperty Name="nomePais" ColumnName="nomePais" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoAlojamentoes">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.tipoAlojamento">
+              <MappingFragment StoreEntitySet="tipoAlojamento">
+                <ScalarProperty Name="idTipoAlojamento" ColumnName="idTipoAlojamento" />
+                <ScalarProperty Name="nomeTipoAlojamento" ColumnName="nomeTipoAlojamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipologias">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.tipologia">
+              <MappingFragment StoreEntitySet="tipologia">
+                <ScalarProperty Name="idTopologia" ColumnName="idTopologia" />
+                <ScalarProperty Name="nometipologia" ColumnName="nometipologia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoUsers">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.tipoUser">
+              <MappingFragment StoreEntitySet="tipoUser">
+                <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+                <ScalarProperty Name="nomeTipo" ColumnName="nomeTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="ImoEstudanteModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+                <ScalarProperty Name="idGenero" ColumnName="idGenero" />
+                <ScalarProperty Name="idMorada" ColumnName="idMorada" />
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+                <ScalarProperty Name="idCurso" ColumnName="idCurso" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="apiKey" ColumnName="apiKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

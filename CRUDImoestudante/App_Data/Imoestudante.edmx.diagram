@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fd2bdbf32a7545df8914f0dc91c7d7e6" Name="Diagram1">
+        <EntityTypeShape EntityType="ImoEstudanteModel.alojamento" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.aluguer" Width="1.5" PointX="15" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.areaCurso" Width="1.5" PointX="9.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.comodidade" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.comodidadesAlojamento" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.contacto" Width="1.5" PointX="12" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.curso" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.estado" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.genero" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.instituicaoEnsino" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.morada" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.pai" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.tipoAlojamento" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.tipologia" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.tipoUser" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImoEstudanteModel.user" Width="1.5" PointX="9.75" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_idAlojamento" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_idEstado" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_idMorada" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_idTipoAlojamento" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.idTipologia" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_aidUsersenhorio" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_idUserAgente" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_idUserInquilino" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_idCurso" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_contacto_user" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_idCursoUser" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_idInstituicao" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_idGenero" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_idMordaInst" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_idPais" ManuallyRouted="false" />
+        <AssociationConnector Association="ImoEstudanteModel.FK_PaisUser" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
