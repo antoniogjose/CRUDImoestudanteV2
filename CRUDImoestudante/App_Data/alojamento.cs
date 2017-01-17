@@ -27,6 +27,8 @@ namespace CRUDImoestudante.App_Data
         public int idEstado { get; set; }
         public Nullable<int> avaliacao { get; set; }
         public string descricao { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<aluguer> aluguers { get; set; }

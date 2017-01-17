@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ImoEstudanteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ImoEstudanteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="alojamento">
           <Key>
             <PropertyRef Name="idAlojamento" />
@@ -16,6 +16,8 @@
           <Property Name="idEstado" Type="int" Nullable="false" />
           <Property Name="avaliacao" Type="int" />
           <Property Name="descricao" Type="nchar" MaxLength="250" />
+          <Property Name="latitude" Type="nchar" MaxLength="30" />
+          <Property Name="longitude" Type="nchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="aluguer">
           <Key>
@@ -425,8 +427,7 @@
             <End Role="alojamento" EntitySet="alojamento" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ImoEstudanteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -446,6 +447,8 @@
           <NavigationProperty Name="morada" Relationship="Self.FK_idMorada" FromRole="alojamento" ToRole="morada" />
           <NavigationProperty Name="tipoAlojamento" Relationship="Self.FK_idTipoAlojamento" FromRole="alojamento" ToRole="tipoAlojamento" />
           <NavigationProperty Name="tipologia" Relationship="Self.idTipologia" FromRole="alojamento" ToRole="tipologia" />
+          <Property Name="latitude" Type="String" />
+          <Property Name="longitude" Type="String" />
         </EntityType>
         <EntityType Name="aluguer">
           <Key>
@@ -891,6 +894,8 @@
           <EntitySetMapping Name="alojamentoes">
             <EntityTypeMapping TypeName="ImoEstudanteModel.alojamento">
               <MappingFragment StoreEntitySet="alojamento">
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
                 <ScalarProperty Name="idAlojamento" ColumnName="idAlojamento" />
                 <ScalarProperty Name="idTipologia" ColumnName="idTipologia" />
                 <ScalarProperty Name="idTipoAlojamento" ColumnName="idTipoAlojamento" />

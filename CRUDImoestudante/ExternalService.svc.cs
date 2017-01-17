@@ -1,32 +1,18 @@
-﻿/**
-* Names : Antonio Gonçalves & Nelson Peixoto
-* Email: A10851@alunos.ipca.pt & A11271@alunos.ipca.pt
-* Date : 20-12-2016
-* RESTFULL Web Service 2º Trabalho Prático
-* Versao : 1.0
-*/
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Web;
-
 using CRUDImoestudante.App_Data;
+using System.ServiceModel;
 using System.Net;
-
-using System.Net.Http;
-using Facebook;
-using System.Web;
-using System.IO;
-using Tweetinvi.Models;
-using Tweetinvi;
-using Tweetinvi.Parameters;
+using System.Web.Script.Serialization;
+using System.Text;
 
 namespace CRUDImoestudante
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
-    public class Service1 : IService1
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "ExternalService" in code, svc and config file together.
+    // NOTE: In order to launch WCF Test Client for testing this service, please select ExternalService.svc or ExternalService.svc.cs at the Solution Explorer and start debugging.
+    public class ExternalService : IExternalService
     {
-
         #region UTILIZADOR
 
         /// <summary>
@@ -154,7 +140,7 @@ namespace CRUDImoestudante
                 r.Rua = string.Copy(aux.rua);
                 r.Numero = aux.numero.GetValueOrDefault();
                 r.Andar = aux.andar.GetValueOrDefault();
-                if(aux.descAndar != null) r.DescAndar = string.Copy(aux.descAndar); // esq, dto, frente , tras
+                if (aux.descAndar != null) r.DescAndar = string.Copy(aux.descAndar); // esq, dto, frente , tras
 
                 r.Pais = string.Copy(db.pais.Single(x => x.idPais == aux.idPais).nomePais);
 
@@ -338,7 +324,7 @@ namespace CRUDImoestudante
                 r.Contactos = GetContactsData(dUser.idUser);
 
             }
-            
+
 
             return r;
         }
@@ -565,7 +551,7 @@ namespace CRUDImoestudante
                         MoradaAlojamento = GetMoradByAlojId(daluguer.idAlojamento),
                         Latitude = daluguer.latitude.ToString(),
                         Longitude = daluguer.longitude.ToString()
-                       
+
                     });
 
                 return r;
@@ -649,10 +635,10 @@ namespace CRUDImoestudante
                 if (aux.descAndar != null) r.DescAndar = string.Copy(aux.descAndar); // esq, dto, frente , tras
 
                 r.Pais = string.Copy(db.pais.Single(x => x.idPais == aux.idPais).nomePais);
-                
+
                 r.CodPostal = aux.codigoPostal;
                 r.Cidade = string.Copy(aux.cidade);
-                
+
 
                 return r;
             }
@@ -883,94 +869,69 @@ namespace CRUDImoestudante
 
         #endregion  end
 
-        #region FACEBOOK
+        #region GMAP
 
-
-        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "/FacePublicHabitacao")]
-        public bool FacePublicHabitacao(AlojamentoRespostaPedido alojamento)
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "/GetGmapPoi/lat/{latitude}/long/{longitude}/area/{distancia}")]
+        public Example GetGmapPoi(string latitude, string longitude, string distancia)
         {
+            WebClient webClient = new WebClient();
 
-            try
+            string uri = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
+
+            uri += "location=" + latitude + "," + longitude + "&";
+            uri += "radius=" + distancia + "&";
+            uri += "types=point_of_interest&";
+            uri += "key=AIzaSyAk7AXTSD8FhpqAixnP6_Alh3uOh4v1198";
+
+
+            string results = webClient.DownloadString(uri);
+
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+
+            Example pois = jss.Deserialize<Example>(results);
+
+            return pois;
+        }
+
+
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "/GetGmapPoiCoord/lat/{latitude}/long/{longitude}/area/{distancia}")]
+        public GmapPoiCoords GetGmapPoiCoord(string latitude, string longitude, string distancia)
+        {
+            WebClient webClient = new WebClient();
+
+            string uri = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
+
+            uri += "location=" + latitude + "," + longitude + "&";
+            uri += "radius=" + distancia + "&";
+            uri += "types=point_of_interest&";
+            uri += "key=AIzaSyAk7AXTSD8FhpqAixnP6_Alh3uOh4v1198";
+
+
+            string results = webClient.DownloadString(uri);
+
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+
+            Example pois = jss.Deserialize<Example>(results);
+
+            //List<GmapPoiCoord> data = new List<GmapPoiCoord>();
+
+            GmapPoiCoords data = new GmapPoiCoords();
+            data.GmapPois = new List<GmapPoiCoord>();
+
+
+            foreach (Result x in pois.results)
             {
-                var accessToken = "EAACEdEose0cBAGUxLZBImNi7ZAIwtHKBqHAVXj75BpLdvsbSZA2L1co6rcjbUlcEhc9ptG6JJYwGkZAVWZAEOdGZA4IJYS9RgK58EBZBd8udGVSaiJHzi42ZCJbS2kqmV5h7h3OUZA290igN1Wx2SXaOArodfHZBq7vt52E34fT4d1WwZDZD";
+                data.GmapPois.Add(new GmapPoiCoord {
 
-                FacebookClient fbc = new FacebookClient(accessToken);
-
-                string encodeaccesstoken = HttpUtility.UrlEncode(accessToken);
-                string mensagem =
-                  "ID Habitacao  : " + alojamento.IdAlojamento + "\n" +
-                  "Avaliação : " + alojamento.Avaliacao + "\n" +
-                  "Localização : " + alojamento.MoradaAlojamento.Cidade + "\n" +
-                  "Tipo : " + alojamento.TipoAloj + "\n";
-
-
-                var paramaters = new Dictionary<string, object>
-                                {
-                                    { "display", "popup" },
-                                    { "response_type", "token" }
-                                };
-
-                paramaters.Add("name", mensagem);
-                paramaters.Add("message", mensagem);
-                paramaters.Add("link", "http://imm-tecnologia.com.br/imobiliaria-modelo-2/wp-content/uploads/2016/11/casa-topo.png");
-
-                fbc.Post("me/feed", paramaters);
-                return true;
-
+                    Nome = Encoding.UTF8.GetString(Encoding.Default.GetBytes(x.name)),
+                    Latitude = x.geometry.location.lat,
+                    Longitude = x.geometry.location.lng
+                });
             }
-            catch //(Exception ex)
-            {
-                return false;
-            }
+
+            return data;
         }
 
         #endregion
-
-        #region TWITTER
-
-
-        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, UriTemplate = "/TwittHabitacao")]
-        public bool TwittHabitacao(AlojamentoRespostaPedido alojamento)
-        {
-            try
-            {
-
-                string mensagem =
-                  "ID Habitacao  : " + alojamento.IdAlojamento + "\n" +
-                  "Avaliação : " + alojamento.Avaliacao + "\n" +
-                  "Localização : " + alojamento.MoradaAlojamento.Cidade + "\n" +
-                  "Tipo : " + alojamento.TipoAloj + "\n";
-
-                // Generate credentials that we want to use
-
-                //var creds = new TwitterCredentials("CONSUMER_KEY", "CONSUMER_SECRET", "ACCESS_TOKEN", "ACCESS_TOKEN_SECRET");
-
-                var creds = new TwitterCredentials("OW2XXrJ4MEBllPl7aU7Q2pt0j", "dxmdc6wnXgF3KrI1R9Ca2D8weEheHZmq4JUlCUhlmxhtvm5Myj", "930034027-sSFGF5NpU49HqSRjSMkcKTHb2aV4iatHq8C1t1Gv", "zX4tFBdOvwcLshrmn2fuGGJd6M1a1AvA4ffsMAUyUjRkA");
-
-
-                byte[] file1 = File.ReadAllBytes("http://imm-tecnologia.com.br/imobiliaria-modelo-2/wp-content/uploads/2016/11/casa-topo.png");
-                var media = Upload.UploadImage(file1);
-
-                // Use the ExecuteOperationWithCredentials method to invoke an operation with a specific set of credentials
-                var tweet = Auth.ExecuteOperationWithCredentials(creds, () =>
-                {
-                    return Tweet.PublishTweet(mensagem, new PublishTweetOptionalParameters
-                    {
-
-                        Medias = new List<IMedia> { media }
-
-                    });
-
-                });
-                return true;
-            }
-            catch //(Exception ex)
-            {
-                //throw new Exception("erro", ex);
-                return false;
-            }
-        }
     }
-
-    #endregion
 }

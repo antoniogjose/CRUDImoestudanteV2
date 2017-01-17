@@ -133,11 +133,13 @@ namespace CRUDImoestudante
     {
 
         int idAlojamento;
-        tipologiaRespostaPedido tipol;
-        tipoAlojamentoRespostaPedido tipoAloj;
+        string tipol;
+        string tipoAloj;
         MoradaRespostaPedido moradaAlojamento;
         int avaliacao;
-        IList<comodidadeRespostaPedido> comod;
+        string longitude;
+        string latitude; 
+        List<comodidadeRespostaPedido> comod;
 
         [DataMember]
         public int IdAlojamento
@@ -147,14 +149,14 @@ namespace CRUDImoestudante
         }
 
         [DataMember]
-        public tipologiaRespostaPedido Tipol
+        public string Tipol
         {
             get { return tipol; }
             set { tipol = value; }
         }
 
         [DataMember]
-        public tipoAlojamentoRespostaPedido TipoAloj
+        public string TipoAloj
         {
             get { return tipoAloj; }
             set { tipoAloj = value; }
@@ -175,7 +177,21 @@ namespace CRUDImoestudante
         }
 
         [DataMember]
-        public IList<comodidadeRespostaPedido> comodidades
+        public string Latitude
+        {
+            get { return latitude; }
+            set { latitude = value; }
+        }
+
+        [DataMember]
+        public string Longitude
+        {
+            get { return longitude; }
+            set { longitude = value; }
+        }
+
+        [DataMember]
+        public List<comodidadeRespostaPedido> comodidades
         {
             get { return comod; }
             set { comod = value; }
@@ -187,10 +203,10 @@ namespace CRUDImoestudante
     [DataContract]
     public class ListaDeAlojamentosRespostaPedido
     {
-        IList<AlojamentoRespostaPedido> dadosAlojamentos;
+        List<AlojamentoRespostaPedido> dadosAlojamentos;
 
         [DataMember]
-        public IList<AlojamentoRespostaPedido> DadosAlojamentos
+        public List<AlojamentoRespostaPedido> DadosAlojamentos
         {
             get { return dadosAlojamentos; }
             set { dadosAlojamentos = value; }
@@ -492,6 +508,52 @@ namespace CRUDImoestudante
         {
             get { return dadosUtilizadores; }
             set { dadosUtilizadores = value; }
+        }
+
+    }
+
+
+    [DataContract]
+    public class GmapPoiCoord
+    {
+        string nome;
+        double latitude;
+        double longitude;
+
+        [DataMember]
+        public string Nome
+        {
+            get { return nome; }
+            set { nome = value; }
+        }
+
+        [DataMember]
+        public double Latitude
+        {
+            get { return latitude; }
+            set { latitude = value; }
+        }
+
+        [DataMember]
+        public double Longitude
+        {
+            get { return longitude; }
+            set { longitude = value; }
+        }
+
+
+    }
+
+    [DataContract]
+    public class GmapPoiCoords
+    {
+        IList<GmapPoiCoord> gmapPois;
+
+        [DataMember]
+        public IList<GmapPoiCoord> GmapPois
+        {
+            get { return gmapPois; }
+            set { gmapPois = value; }
         }
 
     }

@@ -171,12 +171,14 @@
       <DependentUpon>Imoestudante.edmx</DependentUpon>
       <LastGenOutput>Imoestudante.cs</LastGenOutput>
     </Content>
+    <Content Include="ExternalService.svc" />
     <Content Include="Service1.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\Authentification\CostumValidator.cs" />
     <Content Include="App_Code\Authentification\SecurityManager.cs" />
+    <Compile Include="APIKeyAuthorization.cs" />
     <Compile Include="App_Data\alojamento.cs">
       <DependentUpon>Imoestudante.tt</DependentUpon>
     </Compile>
@@ -228,6 +230,11 @@
     <Compile Include="App_Data\pai.cs">
       <DependentUpon>Imoestudante.tt</DependentUpon>
     </Compile>
+    <Compile Include="ExternalService.svc.cs">
+      <DependentUpon>ExternalService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="GmapClass.cs" />
+    <Compile Include="IExternalService.cs" />
     <Compile Include="ImoEstudante.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
